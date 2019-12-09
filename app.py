@@ -40,6 +40,7 @@ def sil(id):
    #gelen id değeri kaydı sil
    db.find_one_and_delete({'_id':ObjectId(id)})
    #anasayfaya gönder
+   return redirect('/')
     
 @app.route('/ekle',methods=['POST'])
 def ekle():
