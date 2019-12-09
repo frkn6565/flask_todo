@@ -50,7 +50,7 @@ def ekle():
     return redirect('/')
 #hatalı ya da olmayan bir url isteği gelirse 
 #hata vermesin anasayfaya yönlendirelim..
-@app.errorhandler(404')
+@app.errorhandler(404)
 def hatali_url():
    return redirect('/')
     
