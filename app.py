@@ -7,7 +7,7 @@ app.secret_key="Çok gizli key "
 #veritabanı bağlantısı
 
 
-client=MongoClient("mongodb+srv://egitim:egitim48@cluster0-a4rqa.mongodb.net/test?retryWrites=true&w=majority")
+client =MongoClient("mongodb+srv://egitim:egitim48@cluster0-a4rqa.mongodb.net/test?retryWrites=true&w=majority")
 #tododb veritabanı adı todos:collections...
 db = client.tododb.todos
 #artık db ile veri tabanında herşeyi yapabilirimi.
@@ -28,14 +28,14 @@ def index():
 @app.route('/guncelle/<id>')
 def guncelle(id):
     #gelen id değeri ile kaydı bulalım.
-    yap=db.find({'_id':ObjectId(id)})
+    yap=db.find_one({'_id':ObjectId(id)})
     #durum değeri true ise false false ise true yapalım.
     durum=not yap.get('durum')
     #kaydı güncelle
     db.find_one_and_update({'_id':ObjectId(id)},{'$set':{'durum':durum}})
     #anasayfaya yönlendir.
     return redirect('/')
-@app.route('/sil<id>')
+@app.route('/sil/<id>')
 def sil(id):
    #gelen id değeri kaydı sil
    db.find_one_and_delete({'_id':ObjectId(id)})
